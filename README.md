@@ -116,3 +116,7 @@ card each morning listing the high-impact scheduled events of the next 24 hours
 ```bash
 python -m unittest discover -s tests -t .
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
