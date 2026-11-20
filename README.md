@@ -102,6 +102,13 @@ card each morning listing the high-impact scheduled events of the next 24 hours
 
 - Filings cover companies that report to the US SEC. Funds, indices and most
   non-US companies have none, so watch their price only.
+- The SEC sometimes refuses the request that turns a ticker into its company
+  number (HTTP 403, "request rate threshold exceeded"), and the filings for
+  that holding then fail. Set `cik` on the watch to the company's SEC number,
+  which skips that request. The number is on the company's page at
+  [sec.gov/edgar/search](https://www.sec.gov/edgar/search/). The SEC also asks
+  automated tools to identify themselves, so put your own contact details in
+  `user_agent`.
 - News and prices come from Yahoo Finance's public feeds. They are unofficial,
   can lag by some minutes and can change without notice. If a source fails for
   12 checks in a row, the tool posts one warning.

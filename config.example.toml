@@ -24,6 +24,7 @@ user_agent = "marketalerts/0.1 (personal alert script)"
 [[watch]]
 symbol = "AAPL"
 name = "Apple"
+# cik = 320193           # optional: the SEC's company number; skips the ticker lookup
 
 # A US company held through a European listing: prices from that listing,
 # filings and news from the US ticker.

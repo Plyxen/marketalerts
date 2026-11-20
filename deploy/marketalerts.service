@@ -7,6 +7,8 @@ Wants=network-online.target
 [Service]
 User=pi
 WorkingDirectory=/home/pi/marketalerts
+# Without this, log lines reach the journal late.
+Environment="PYTHONUNBUFFERED=1"
 ExecStart=/usr/bin/python3 -m marketalerts loop
 Restart=always
 RestartSec=30
