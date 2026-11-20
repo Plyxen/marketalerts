@@ -1,0 +1,15 @@
+# systemd unit for a Raspberry Pi. Change User and the two paths to match yours.
+[Unit]
+Description=Market alerts to Discord
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/marketalerts
+ExecStart=/usr/bin/python3 -m marketalerts loop
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

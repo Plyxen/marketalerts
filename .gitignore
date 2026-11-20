@@ -1,0 +1,4 @@
+__pycache__/
+state/
+# holds the Discord webhook
+config.toml

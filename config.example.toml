@@ -1,0 +1,58 @@
+# Copy this file to config.toml and edit it. config.toml is kept out of git.
+
+[discord]
+# Discord: channel settings > Integrations > Webhooks > New Webhook > Copy URL.
+# Anyone who has this address can post to the channel, so keep it private.
+# You can leave it empty and set the ALERTS_DISCORD_WEBHOOK environment variable instead.
+webhook_url = ""
+username = "Market Alerts"   # the name the messages are posted under
+
+[settings]
+check_minutes = 5        # how often "loop" checks
+drop_percent = 5         # alert when something is down this much on the day, and again at 10, 15...
+rise_percent = 0         # the same for rises; 0 turns it off
+news = "important"       # "important" (CEO changes, lawsuits, takeovers...), "all" or "off"
+news_max_per_check = 5
+forms = ["8-K"]          # SEC filing types to report; 8-K is the "something happened" form
+heartbeat = "off"        # "daily" posts one "still running" message each morning
+user_agent = "marketalerts/0.1 (personal alert script)"
+
+# One block per holding. "symbol" is the Yahoo Finance symbol of the listing you
+# hold; prices and the market shown on each card come from it.
+
+# A US company on its home market. Nothing else is needed.
+[[watch]]
+symbol = "AAPL"
+name = "Apple"
+
+# A US company held through a European listing: prices from that listing,
+# filings and news from the US ticker.
+[[watch]]
+symbol = "MSF.DE"
+name = "Microsoft"
+sec_ticker = "MSFT"
+news_symbol = "MSFT"
+
+# A non-US company. These report to the SEC with forms 6-K and 20-F, not 8-K.
+[[watch]]
+symbol = "NOVO-B.CO"
+name = "Novo Nordisk"
+sec_ticker = "NVO"
+news_symbol = "NVO"
+forms = ["6-K", "20-F"]
+
+# A fund. Funds have no SEC filings, so watch only the price.
+[[watch]]
+symbol = "VWCE.DE"
+name = "Vanguard FTSE All-World"
+filings = false
+news = false
+drop_percent = 3
+
+# Optional: one card a day listing scheduled economic events (rate decisions,
+# inflation, jobs data) in the next 24 hours, from the Forex Factory calendar.
+[calendar]
+enabled = false
+hour_utc = 6                        # post at or after this hour (UTC)
+currencies = ["USD", "EUR"]         # whose events to list
+impact = ["High"]                   # add "Medium" for more
